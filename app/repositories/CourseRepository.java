@@ -1,9 +1,9 @@
 package repositories;
 
 
-import io.ebean.Finder;
-import io.ebean.Model;
+import io.ebean.*;
 import models.Course;
+import models.Student;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +18,20 @@ public class CourseRepository {
 
     }
 
-    public List<Course> get() throws Exception {
-        return finder.all();
+    public List<Course> get(String query) throws Exception {
+
+        List<Course> results;
+
+        if(query != null){
+            RawSql rawSql = RawSqlBuilder.parse("select code, title, description from Course " + query).create();
+            Query<Course> ebeanQuery = Ebean.find(Course.class);
+            ebeanQuery.setRawSql(rawSql);
+            results = ebeanQuery.findList();
+        } else {
+            results = finder.all();
+        }
+
+        return results;
     }
 
     public Course save(Course course) throws Exception {

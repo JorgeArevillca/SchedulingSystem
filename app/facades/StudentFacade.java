@@ -7,11 +7,11 @@ import repositories.StudentRepository;
 import java.util.List;
 import java.util.Optional;
 
-public class StudenFacade {
+public class StudentFacade {
     private StudentRepository studentRepository;
 
     @Inject
-    public StudenFacade(StudentRepository studentRepository){
+    public StudentFacade(StudentRepository studentRepository){
         this.studentRepository = studentRepository;
     }
 
@@ -25,8 +25,8 @@ public class StudenFacade {
         return optionalStudent.get();
     }
 
-    public List<Student> get() throws Exception {
-        return this.studentRepository.get();
+    public List<Student> get(String query) throws Exception {
+        return this.studentRepository.get(query);
     }
 
     public Student save(Student student) throws Exception {

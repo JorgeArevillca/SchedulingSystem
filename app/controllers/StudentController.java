@@ -2,7 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
-import facades.StudenFacade;
+import facades.StudentFacade;
 import models.Student;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -11,21 +11,21 @@ import play.mvc.Result;
 import java.util.List;
 
 public class StudentController extends Controller {
-    private StudenFacade studenFacade;
+    private StudentFacade studentFacade;
 
     @Inject
-    public StudentController(StudenFacade studenFacade){
-        this.studenFacade = studenFacade;
+    public StudentController(StudentFacade studentFacade){
+        this.studentFacade = studentFacade;
     }
 
     public Result get(Long id) throws Exception {
-        Student student = this.studenFacade.get(id);
+        Student student = this.studentFacade.get(id);
         JsonNode result = Json.toJson(student);
         return ok(result);
     }
 
-    public Result getAll() throws Exception {
-        List<Student> students = this.studenFacade.get();
+    public Result getAll(String query) throws Exception {
+        List<Student> students = this.studentFacade.get(query);
         JsonNode result = Json.toJson(students);
         return ok(result);
     }
@@ -33,7 +33,7 @@ public class StudentController extends Controller {
     public Result create() throws Exception {
         JsonNode json = request().body().asJson();
         Student student = Json.fromJson(json, Student.class);
-        student = this.studenFacade.save(student);
+        student = this.studentFacade.save(student);
         JsonNode result = Json.toJson(student);
         return ok(result);
     }
@@ -42,13 +42,13 @@ public class StudentController extends Controller {
         JsonNode json = request().body().asJson();
         Student student = Json.fromJson(json, Student.class);
         student.studentId = id;
-        student = this.studenFacade.update(student);
+        student = this.studentFacade.update(student);
         JsonNode result = Json.toJson(student);
         return ok(result);
     }
 
     public Result delete(Long id) throws Exception {
-        this.studenFacade.delete(id);
+        this.studentFacade.delete(id);
         return ok();
     }
 }

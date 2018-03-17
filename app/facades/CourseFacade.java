@@ -25,8 +25,8 @@ public class CourseFacade {
         return optionalCourse.get();
     }
 
-    public List<Course> get() throws Exception {
-        return this.courseRepository.get();
+    public List<Course> get(String query) throws Exception {
+        return this.courseRepository.get(query);
     }
 
     public Course save(Course course) throws Exception {

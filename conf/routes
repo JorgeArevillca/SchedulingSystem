@@ -8,7 +8,7 @@ GET        /                             controllers.HomeController.index
 # Students
 
 GET         /schedulingSystem/student/:id                                             controllers.StudentController.get(id:Long)
-GET         /schedulingSystem/student                                                 controllers.StudentController.getAll()
+GET         /schedulingSystem/student                                                 controllers.StudentController.getAll(query:String ?= null)
 POST        /schedulingSystem/student                                                 controllers.StudentController.create()
 PATCH       /schedulingSystem/student/:id                                             controllers.StudentController.update(id:Long)
 DELETE      /schedulingSystem/student/:id                                             controllers.StudentController.delete(id:Long)
@@ -16,7 +16,7 @@ DELETE      /schedulingSystem/student/:id                                       
 # Classes
 
 GET         /schedulingSystem/class/:id                                               controllers.CourseController.get(id:Long)
-GET         /schedulingSystem/class                                                   controllers.CourseController.getAll()
+GET         /schedulingSystem/class                                                   controllers.CourseController.getAll(query:String ?= null)
 POST        /schedulingSystem/class                                                   controllers.CourseController.create()
 PATCH       /schedulingSystem/class/:id                                               controllers.CourseController.update(id:Long)
 DELETE      /schedulingSystem/class/:id                                               controllers.CourseController.delete(id:Long)

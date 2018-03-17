@@ -24,8 +24,8 @@ public class CourseController extends Controller{
         return ok(result);
     }
 
-    public Result getAll() throws Exception {
-        List<Course> courses = this.courseFacade.get();
+    public Result getAll(String query) throws Exception {
+        List<Course> courses = this.courseFacade.get(query);
         JsonNode result = Json.toJson(courses);
         return ok(result);
     }
