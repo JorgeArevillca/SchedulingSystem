@@ -16,5 +16,5 @@ public class Student extends Model{
     public String firstName;
 
     @ManyToMany
-    public List<Class> classes;
+    public List<Course> aClasses;
 }

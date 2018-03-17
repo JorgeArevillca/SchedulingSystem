@@ -8,7 +8,7 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
-public class Class extends Model {
+public class Course extends Model {
 
     @Id
     public Long code;
