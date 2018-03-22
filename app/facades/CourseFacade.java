@@ -1,11 +1,15 @@
 package facades;
 
 import com.google.inject.Inject;
+import exceptions.ResourceNotFoundException;
 import models.Course;
 import repositories.CourseRepository;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
+
+import static utils.ApplicationConstants.CLASS_NOT_FOUND;
 
 public class CourseFacade {
     private CourseRepository courseRepository;
@@ -19,7 +23,7 @@ public class CourseFacade {
         Optional<Course> optionalCourse = this.courseRepository.get(id);
 
         if(!optionalCourse.isPresent()){
-            throw new Exception("Class not found");
+            throw new ResourceNotFoundException(MessageFormat.format(CLASS_NOT_FOUND, id));
         }
 
         return optionalCourse.get();

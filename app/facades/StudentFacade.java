@@ -1,11 +1,15 @@
 package facades;
 
 import com.google.inject.Inject;
+import exceptions.ResourceNotFoundException;
 import models.Student;
 import repositories.StudentRepository;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
+
+import static utils.ApplicationConstants.STUDENT_NOT_FOUND;
 
 public class StudentFacade {
     private StudentRepository studentRepository;
@@ -19,7 +23,7 @@ public class StudentFacade {
         Optional<Student> optionalStudent = this.studentRepository.get(id);
 
         if(!optionalStudent.isPresent()){
-            throw new Exception("Student not found");
+            throw new ResourceNotFoundException(MessageFormat.format(STUDENT_NOT_FOUND, id));
         }
 
         return optionalStudent.get();
