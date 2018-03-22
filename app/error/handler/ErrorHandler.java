@@ -2,6 +2,7 @@ package error.handler;
 
 import com.google.inject.Singleton;
 import exceptions.ResourceNotFoundException;
+import exceptions.ValidationException;
 import play.http.HttpErrorHandler;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -27,6 +28,8 @@ public class ErrorHandler implements HttpErrorHandler {
 
         if(exception instanceof ResourceNotFoundException) {
             result = Results.notFound(RESOURCE_NOT_FOUND +": "+ exception.getMessage());
+        } else if (exception instanceof ValidationException) {
+            result = Results.badRequest(exception.getMessage());
         } else {
             result = Results.internalServerError(INTERNAL_SERVER_ERROR);
         }

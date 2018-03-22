@@ -6,4 +6,5 @@ public class ApplicationConstants {
     public static final String INTERNAL_SERVER_ERROR = "Internal server error";
     public static final String CLASS_NOT_FOUND = "Class with id {0} not found";
     public static final String STUDENT_NOT_FOUND = "Student with id {0} not found";
+    public static final String VALIDATION_EXCEPTION = "Invalid data";
 }

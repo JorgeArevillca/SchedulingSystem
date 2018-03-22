@@ -6,7 +6,7 @@
 create table course (
   code                          bigint auto_increment not null,
   title                         varchar(255),
-  description                   varchar(255),
+  description                   varchar(240),
   constraint pk_course primary key (code)
 );
 
@@ -18,8 +18,8 @@ create table course_student (
 
 create table student (
   student_id                    bigint auto_increment not null,
-  last_name                     varchar(255),
-  first_name                    varchar(255),
+  last_name                     varchar(255) not null,
+  first_name                    varchar(255) not null,
   constraint pk_student primary key (student_id)
 );
 
